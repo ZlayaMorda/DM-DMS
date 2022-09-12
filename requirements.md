@@ -21,4 +21,10 @@
 
 ---
 DB scheme:
+
 ![alt text](pictures/diagram.png)
+
+---
+Completed and normalized DB:
+
+![alt text](pictures/norm_3.png)
