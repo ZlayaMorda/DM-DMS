@@ -27,11 +27,11 @@ DB scheme:
 ---
 DB description:
 
-__Highlighted__ fields are primary keys or part of them
+___Highlighted___ fields are primary keys or part of them
 
 * User
 all users, who may use app
-  * __IdUser__ - uuid (universal unical identifier)
+  * ___IdUser___ - uuid (universal unical identifier)
   * Name - text (an user name of the variable length)
   * LastName - text (an user lastname of the variable length)
   * Email - text (an user email of the variable length)
@@ -42,31 +42,31 @@ all users, who may use app
   
 * Log
 logs for user actions
-  * __IdUser__ - uuid (foriegn key)
+  * ___IdUser___ - uuid (foriegn key)
   * DateTime - time (time of action)
   * Action - text (an user action for log)
   
 * Chat
 chat for communication with users
-  * __IdChat__ - uuid
+  * ___IdChat___ - uuid
   * Name - text (a chat name)
   * Admin - uuid (IdUser, one to one chat admin)
   
 * ChatUser
 many to many table
-  * __IdChat__ - uuid (foriegn key)
-  * __IdUser__ - uuid (foriegn key)
+  * ___IdChat___ - uuid (foriegn key)
+  * ___IdUser___ - uuid (foriegn key)
   
 * Message
 user message in a chat
-  * __IdChat__ - uuid (foriegn key)
-  * __IdUser__ - uuid (foriegn key)
+  * ___IdChat___ - uuid (foriegn key)
+  * ___IdUser___ - uuid (foriegn key)
   * content - text (message content)
   * DataTime - time (message sending time)
   
 * Page
 User's page with own posts and tags
-  * __IdPage__ - uuid
+  * ___IdPage___ - uuid
   * Name - text (page name)
   * Description - text (description of the page)
   * IdOwner - uuid (foriegn key)
@@ -74,21 +74,21 @@ User's page with own posts and tags
   
 * Followers
 many to many table betweeb users and pages
-  * __IdPage__ - uuid (foriegn key)
-  * __IdUser__ - uuid (foriegn key)
+  * ___IdPage___ - uuid (foriegn key)
+  * ___IdUser___ - uuid (foriegn key)
   
 * Tag
 tag to find and group pages
-  * __Name__ - text (tag name)
+  * ___Name___ - text (tag name)
   
 * PageTag
 many to many table
-  * __IdPage__ - uuid (foriegn key)
-  * __Name__ - text (foriegn key, tag name)
+  * ___IdPage___ - uuid (foriegn key)
+  * ___Name___ - text (foriegn key, tag name)
   
 * Post
 content of the page, may reply other posts
-  * __IdPost__ - uuid
+  * ___IdPost___ - uuid
   * IdPage - uuid (foriegn key)
   * IdUser - uuid (foriegn key)
   * Content - text (post content)
@@ -98,8 +98,8 @@ content of the page, may reply other posts
   
 * Reaction
 reaction for the post, user may set some different for posts
-  * __IdPost__ - uuid (foreign key)
-  * __IdUser__ - uuid (foreign key)
+  * ___IdPost___ - uuid (foreign key)
+  * ___IdUser___ - uuid (foreign key)
   * Likes - bool
   * Dislikes - bool
   ..
