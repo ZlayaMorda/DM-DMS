@@ -29,7 +29,7 @@ DB description:
 
 ___Highlighted___ fields are primary keys or part of them
 
-* User
+* User:
 all users, who may use app
   * ___IdUser___ - uuid (universal unical identifier)
   * Name - text (an user name of the variable length)
@@ -40,31 +40,31 @@ all users, who may use app
   * Role - text (an user role of the variable length, cases: user, moderatore, admin)
   * Is_blocked - bool (is user banned or not)
   
-* Log
+* Log:
 logs for user actions
   * ___IdUser___ - uuid (foriegn key)
   * DateTime - time (time of action)
   * Action - text (an user action for log)
   
-* Chat
+* Chat:
 chat for communication with users
   * ___IdChat___ - uuid
   * Name - text (a chat name)
   * Admin - uuid (IdUser, one to one chat admin)
   
-* ChatUser
+* ChatUser:
 many to many table
   * ___IdChat___ - uuid (foriegn key)
   * ___IdUser___ - uuid (foriegn key)
   
-* Message
+* Message:
 user message in a chat
   * ___IdChat___ - uuid (foriegn key)
   * ___IdUser___ - uuid (foriegn key)
   * content - text (message content)
   * DataTime - time (message sending time)
   
-* Page
+* Page:
 User's page with own posts and tags
   * ___IdPage___ - uuid
   * Name - text (page name)
@@ -72,7 +72,7 @@ User's page with own posts and tags
   * IdOwner - uuid (foriegn key)
   * UnblockDate - time (when would be unbanned)
   
-* Followers
+* Followers:
 many to many table betweeb users and pages
   * ___IdPage___ - uuid (foriegn key)
   * ___IdUser___ - uuid (foriegn key)
@@ -81,12 +81,12 @@ many to many table betweeb users and pages
 tag to find and group pages
   * ___Name___ - text (tag name)
   
-* PageTag
+* PageTag:
 many to many table
   * ___IdPage___ - uuid (foriegn key)
   * ___Name___ - text (foriegn key, tag name)
   
-* Post
+* Post:
 content of the page, may reply other posts
   * ___IdPost___ - uuid
   * IdPage - uuid (foriegn key)
@@ -96,7 +96,7 @@ content of the page, may reply other posts
   * CreatedAt - time (when created)
   * UpdatedAt - time (when updated)
   
-* Reaction
+* Reaction:
 reaction for the post, user may set some different for posts
   * ___IdPost___ - uuid (foreign key)
   * ___IdUser___ - uuid (foreign key)
