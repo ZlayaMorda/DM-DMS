@@ -32,24 +32,24 @@ ___Highlighted___ fields are primary keys or part of them
 * User:
 all users, who may use app
   * ___IdUser___ - uuid (universal unical identifier)
-  * Name - text (an user name of the variable length)
-  * LastName - text (an user lastname of the variable length)
-  * Email - text (an user email of the variable length)
-  * Password - text (an user password of the variable length)
-  * Image_s3_path - text (an user avatar image path of the  variable length)
-  * Role - text (an user role of the variable length, cases: user, moderatore, admin)
+  * Name - varchar (an user name of the variable length)
+  * LastName - varchar (an user lastname of the variable length)
+  * Email - varchar (an user email of the variable length)
+  * Password - varchar (an user password of the variable length)
+  * Image_s3_path - varchar (an user avatar image path of the  variable length)
+  * Role - varchar (an user role of the variable length, cases: user, moderatore, admin)
   * Is_blocked - bool (is user banned or not)
   
 * Log:
 logs for user actions
   * ___IdUser___ - uuid (foriegn key)
   * DateTime - time (time of action)
-  * Action - text (an user action for log)
+  * Action - varchar (an user action for log)
   
 * Chat:
 chat for communication with users
   * ___IdChat___ - uuid
-  * Name - text (a chat name)
+  * Name - varchar (a chat name)
   * Admin - uuid (IdUser, one to one chat admin)
   
 * ChatUser:
@@ -67,8 +67,8 @@ user message in a chat
 * Page:
 User's page with own posts and tags
   * ___IdPage___ - uuid
-  * Name - text (page name)
-  * Description - text (description of the page)
+  * Name - varchar (page name)
+  * Description - varchar (description of the page)
   * IdOwner - uuid (foriegn key)
   * UnblockDate - time (when would be unbanned)
   
@@ -79,12 +79,12 @@ many to many table betweeb users and pages
   
 * Tag
 tag to find and group pages
-  * ___Name___ - text (tag name)
+  * ___Name___ - varchar (tag name)
   
 * PageTag:
 many to many table
   * ___IdPage___ - uuid (foriegn key)
-  * ___Name___ - text (foriegn key, tag name)
+  * ___Name___ - varchar (foriegn key, tag name)
   
 * Post:
 content of the page, may reply other posts
