@@ -68,15 +68,13 @@ call create_user('TP','RP','trP@m.ru','12345678','linkP','user');
 create or replace procedure create_message(
     id_chat int,
     id_user int,
-    content varchar(512),
-    date_time timestamp
+    content varchar(512)
 )
 language plpgsql    
 as $$
 begin
 	insert into messages(id_chat, id_user, content, date_time)
-	values
-	(id_chat, id_user, content, date_time);
+	values(id_chat, id_user, content, current_timestamp);
 
     commit;
 end;$$;
