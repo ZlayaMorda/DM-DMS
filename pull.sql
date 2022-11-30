@@ -1,4 +1,4 @@
--- crud, order by, limit, in, like
+-- crud, order by, limit, in, like, and, or, case
 select * from users
 order by name;
 
@@ -23,6 +23,40 @@ where name = 'mem';
 
 delete from users
 where name = 'mem';
+
+select content from messages
+where id_user in
+(
+    select id_user from messages, chats
+	    where messages.id_user = chats.admin
+);
+
+select name from chats
+where id_chat in
+(
+	select id_chat from messages
+	where date_time <= current_timestamp - interval '1 day'
+	and 
+	(length(content) < 6 or length(content) > 12)
+);
+
+select count(likes), id_post
+from (
+	select id_post, likes from reactions
+	where id_post in (
+		select id_post from posts
+		group by id_post
+		having count(reply_post_id) >= 1
+	)
+) as foo
+group by id_post;
+
+select likes,
+	case when likes = true then 'liked'
+		 when likes = false then 'unliked'
+		 else 'something strange'
+	end
+from reactions;
 
 -- count/union
 
@@ -70,9 +104,8 @@ left join pages on users.id_user = pages.id_owner;
 
 select * from tags cross join pages;
 
-
-
-
+create view myview as select p1.id_post as reply_id, p1.content as reply_content, p2.id_post, p2.content
+from posts p1 join posts p2 on p1.reply_post_id = p2.id_post;
 
 
 
