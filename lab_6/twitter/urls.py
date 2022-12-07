@@ -4,6 +4,7 @@ from .views import *
 
 router = routers.SimpleRouter()
 router.register(r'user', UserView, basename="User")
+router.register(r'page',PageView, basename="Page")
 
 urlpatterns = [
         path('', include(router.urls))

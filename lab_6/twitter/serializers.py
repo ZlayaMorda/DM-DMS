@@ -22,7 +22,6 @@ class UserSerializer(serializers.ModelSerializer):
         return self.validated_data
 
     def update_user(self, pk):
-        print(pk)
         self.validated_data['pk'] = pk
         with connection.cursor() as cursor:
              cursor.execute(
@@ -40,5 +39,39 @@ class UserSerializer(serializers.ModelSerializer):
     def list_users(self):
         with connection.cursor() as cursor:
             cursor.execute("select * from users")
+            data = cursor.fetchall()
+        return data
+
+class PageSerializer(serializers.ModelSerializer):
+    id_owner = serializers.IntegerField(required=False)
+    class Meta:
+        model = Pages
+        fields = ("name", "description", "id_owner")
+
+    def save(self):
+        with connection.cursor() as cursor:
+            cursor.execute('insert into pages(name, description, id_owner) values (%s, %s, %s)', list(self.validated_data.values()))
+        return self.validated_data
+
+    def update_page(self, pk):
+        if "id_owner" not in self.validated_data:
+            self.validated_data["id_owner"] = None
+        self.validated_data['pk'] = pk
+
+        with connection.cursor() as cursor:
+            cursor.execute(
+                "UPDATE pages SET name = COALESCE(%s, name)," +
+                " description = COALESCE(%s, description), id_owner = COALESCE(%s, id_owner)" +
+                " where id_page = %s", convert_to_null(list(self.validated_data.values())))
+        return self.validated_data
+
+    def delete_page(self, pk):
+        with connection.cursor() as cursor:
+            cursor.execute("delete from pages where id_page = %s", [pk])
+        return pk
+
+    def list_pages(self):
+        with connection.cursor() as cursor:
+            cursor.execute("select * from pages")
             data = cursor.fetchall()
         return data
