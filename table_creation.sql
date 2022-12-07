@@ -15,8 +15,7 @@ create table if not exists logs
 (
     date_time timestamp,
     action varchar(128),
-	id_user integer,
-    foreign key (id_user) references users (id_user) on delete restrict,
+    id_user integer,
     primary key(date_time, action, id_user)
 );
 
