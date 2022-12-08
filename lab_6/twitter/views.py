@@ -129,7 +129,7 @@ class FollowersView(BaseViewSet):
         return Response(serialized_follower.data, status=status.HTTP_201_CREATED)
 
     @action(detail=False, methods=('post',), url_path='delete')
-    def create_follower(self, request):
+    def delete_follower(self, request):
         serializer = self.get_serializer_class()
         serialized_follower = serializer(data=request.data)
         serialized_follower.is_valid(raise_exception=True)
